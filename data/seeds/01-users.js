@@ -2,7 +2,7 @@
 exports.seed = function(knex) {
   return knex('issues').delete()
   .then(() => {
-    return knex('projects').delete()
+    return knex('user_profiles').delete()
   })
   .then(() => {
     return knex('users').delete()
