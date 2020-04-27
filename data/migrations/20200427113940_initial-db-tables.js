@@ -8,19 +8,19 @@ exports.up = function(knex) {
   })
   .createTable('user_profiles', tbl => {
       tbl.increments();
-      tbl.int('user_id').notNullable().references('id').inTable('users')
+      tbl.integer('user_id').notNullable().references('id').inTable('users')
       tbl.string('first_name')
       tbl.string('last_name')
-      tbl.int('zip_code', 5)
+      tbl.integer('zip_code', 5)
       tbl.string('bio')
   })
   .createTable('issues', tbl =>{
       tbl.increments();
       tbl.string('short_description').notNullable();
       tbl.string('description')
-      tbl.int('zip_code', 5).notNullable();
-      tbl.int('user_id').notNullable().references('id').inTable('users')
-      tbl.int('upvotes').defaultTo(1)
+      tbl.integer('zip_code', 5).notNullable();
+      tbl.integer('user_id').notNullable().references('id').inTable('users')
+      tbl.integer('upvotes').defaultTo(1)
   })
 };
 
