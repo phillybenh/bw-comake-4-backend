@@ -23,7 +23,7 @@ function update(id, changes){
 }
 
 function insert(profile){
-    return db('profile')
+    return db('user_profiles')
     .insert(profile)
     .then(id => {
         return getBy({id: id[0]})
