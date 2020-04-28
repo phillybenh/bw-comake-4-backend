@@ -7,7 +7,7 @@ router.get('/:id', (req, res) => {
     Profiles.getBy({id})
     .then(profile => {
         if(profile){
-            res.status(200).json(profile)
+            res.status(200).json(profile[0])
         }else{
             res.status(404).status({error: 'No resource profile found at that ID'})
         }  
