@@ -1,5 +1,8 @@
 # CoMake API
 
+## Read the Docs on Postman:
+https://documenter.getpostman.com/view/10960109/SzfDwQQK
+
 ### Base URL
 https://comake-api.herokuapp.com
 
