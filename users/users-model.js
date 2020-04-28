@@ -20,7 +20,12 @@ function findBy(id){
 }
 function add(user){
     return db('users')
+    .returning('id')
     .insert(user)
+    .then(([id]) => {
+        console.log(id)
+        return findBy(id)
+    })
 }
 
 function update(userChanges, id){
