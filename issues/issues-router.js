@@ -33,7 +33,11 @@ router.get('/:id', (req, res) => {
     const id = req.params.id
     Issues.getBy({id})
     .then(issue => {
-        res.status(200).json(issue)
+        if(issue){
+            res.status(200).json(issue)
+        }else{
+            res.status(404).json({error: 'No issues available at this resourse'})
+        }
     })
     .catch(err => {
         res.status(500).json({error: err.message})
@@ -43,7 +47,11 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Issues.insert(req.body)
     .then(issue => {
-        res.status(201).json(issue)
+        if(issue){
+            res.status(201).json(issue)
+        }else{
+            res.status(400).json({error: 'Issue is missing necessary parameters'})
+        }
     })
     .catch(err => {
         res.status(500).json({error: err.message})
@@ -76,6 +84,9 @@ router.delete('/:id', (req, res) => {
     Issues.remove(id)
     .then(message => {
         res.status(200).json(message)
+    })
+    .catch(err => {
+        res.status(500).json({error: err.message})
     })
 })
 

@@ -42,6 +42,6 @@ Removes a user. Responds with a success message
 Requires a username and password. Upon successful login, sends a welcome message along with a JSON Web Token to be stored on the client.
 
 ## - POST /register
-Requires a username and password. Upon successful login, sends the new user's information along with a JSON Web Token to be stored by the client.
+Requires a username and password. Upon successful login, sends a JSON Web Token to be stored by the client.
 Requires a username and password. Upon successful login, sends the new user's information along with a JSON Web Token to be stored by the client.
 
