@@ -1,31 +1,45 @@
-# backend
-Backend Unit 4 Team
+# CoMake API
 
-## Getting Started With This File System
-1. This repo has been boilerplated out for ease of development going forward.
-2. To get started, first install dependencies using `npm install`
-3. Then, use `npm run modules` to install: 
-    1. nodemon 
-    2. express 
-    3. sqlite3 
-    4. knex 
-    5. cors 
-    6. helmet 
-    7. bcryptjs 
-    8. jsonwebtoken 
-    9. pg
-    10. dotenv
-4. Set any desired environment variables by creating a .env file and adding any variables. (***optional***)
-5. `npm run server` to get the server running locally
+### Base URL
+https://comake-api.herokuapp.com
 
-## File System Design
-- ./api contains a path to the .env secrets variable // defaults to 'Shhh'
-- ./auth is where the auth-router with login and registration, and the authenticator should be placed
-- ./data contains the dbconfig.js file, migration folder, seeds folder, and database file (.db3)
-- ./issues will contain the issues-model and the issues-router
-- ./userProfiles will contain the user-profiles-model and the user-profiles-router
-- ./users will contain the users-model
+## - GET /issues
+Returns an array of objects containing all issues. Each object includes an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
 
-## Notes
-- creating a .env file is probably not necessary. Everything that relies on it has a fallback
-- keeping the users model in the users folder instead of elsewhere should help in case of changes to the features of the app (maybe a list of users could be pulled up for stretch -- that would make it nice to have an users-router, and having the users folder will keep that potentially more organized)
+## - GET /issues/:id
+Returns an array containing one object. The object includes an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+
+## - GET /issues?zip_code=12345
+Returns an array of objects containing all issues in that zip_code. Each object incldues an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+
+## - GET /issues?user_id=1
+Returns an array of objects containing all issues posted by that user. Each object incldues an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+
+## - DELETE /issues/:id
+Deletes the indicated issue. Responds with a success message.
+
+## - POST /issues
+Requires a request body including short_description and zip_code. Other values optional. Creates a new issue. Responds with an array
+
+## - PUT /issues/:id
+Requires a request body including any desired changes to be made to the issue. Returns an array containing one object. The object includes an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+
+## - GET /users/:id
+Returns an array containing one object. Object includes the object describing the user's profile, including: id, username, password (hashed), first_name, last_name, zip_code, and bio.
+
+## - PUT /users/:id
+Requires a request body including any changes the user wants to make to their bio. Responds with an array containing the newly updated object.
+
+## - POST /users/:id
+Requires a request body including any details a new user wants to add to their profile. Responds with an array containing an object with the newly created profile information
+
+## - DEL /users/:id
+Removes a user. Responds with a success message
+
+## Authorization Routes
+
+## - POST /login
+Requires a username and password. Upon successful login, sends a welcome message along with a JSON Web Token to be stored on the client.
+
+## - POST /register
+Requires a username and password. Upon successful login, sends the new user's information along with a JSON Web Token to be stored by the client.

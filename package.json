@@ -6,7 +6,8 @@
   "scripts": {
     "modules": "npm i nodemon express sqlite3 knex cors helmet bcryptjs jsonwebtoken pg",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
