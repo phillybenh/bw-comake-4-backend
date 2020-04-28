@@ -7,7 +7,7 @@
     "modules": "npm i nodemon express sqlite3 knex cors helmet bcryptjs jsonwebtoken pg",
     "server": "nodemon index.js",
     "start": "node index.js",
-    "test": "cross-env DB_ENV=testing jest --watch"
+    "test": "cross-env DB_ENV=testing jest --watch --verbose"
   },
   "repository": {
     "type": "git",
