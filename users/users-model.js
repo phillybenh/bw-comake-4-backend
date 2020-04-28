@@ -21,10 +21,6 @@ function findBy(id){
 function add(user){
     return db('users')
     .insert(user)
-    .then(([id]) => {
-        return db('users')
-        .where({id})
-    })
 }
 
 function update(userChanges, id){
