@@ -21,7 +21,7 @@ function findBy(filter){
 function add(user){
     return db('users')
     .insert(user)
-    .then(id => {
+    .then(async (id) => {
         return findBy({id: id[0]})
     })
 }
