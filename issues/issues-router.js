@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     Issues.insert(req.body)
-    .then(issue => {
+    .then(([issue]) => {
         if(issue){
             res.status(201).json(issue)
         }else{
@@ -61,8 +61,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     if(req.body.value){
         Issues.votes(req.params.id, req.body.value )
-        .then(issue => {
-            res.status(200).json(issue)
+        .then(([votes]) => {
+            res.status(200).json(votes)
         })
         .catch(err => {
             console.log(req.params.id)
