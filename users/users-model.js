@@ -18,7 +18,6 @@ function findBy(filter){
     
 
 }
-
 function add(user){
     return db('users')
     .insert(user)
@@ -41,6 +40,7 @@ function update(userChanges, id){
 function remove(id){
     const toBeDeleted = findById(id)
     .then(() => {
+        console.log(toBeDeleted)
         return toBeDeleted;
     })
 }
