@@ -12,9 +12,9 @@ function findAll(){
     return db('users')
 }
 
-function findBy(filter){
+function findBy(id){
     return db('users')
-    .where(filter)
+    .where({id})
     
 
 }
@@ -22,7 +22,8 @@ function add(user){
     return db('users')
     .insert(user)
     .then(([id]) => {
-        return findBy({id})
+
+        return findBy(id)
     })
 }
 
