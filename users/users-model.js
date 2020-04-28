@@ -24,6 +24,7 @@ function add(user){
     .then(id => {
         return db('users')
         .where({id: id[0]})
+        .first()
     })
 }
 
