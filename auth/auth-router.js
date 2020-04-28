@@ -12,19 +12,16 @@ router.post('/register', (req, res) => {
 
   user.password = hash;
 
-  // Users.add(user)
-  //   .then(([user]) => {
-  //     const token = generateToken(user)  
-  //     res.status(201).json({user, token});
-  //   })
-  //   .catch((err) => {
+  Users.add(user)
+    .then(([user]) => {
+      const token = generateToken(user)  
+      res.status(201).json({user, token});
+    })
+    .catch((err) => {
 
-  //     res.status(500).json({ errorMessage: err.message });
-  //   });
-  db.insert(user)
-  .then(id => {
-    res.status(200).json({id})
-  })
+      res.status(500).json({ errorMessage: err.message });
+    });
+
 });
 
 router.post('/login', (req, res) => {
