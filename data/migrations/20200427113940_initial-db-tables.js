@@ -56,5 +56,6 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('issues')
+  .dropTableIfExists('user_profiles')
   .dropTableIfExists('users')
 };
