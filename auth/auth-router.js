@@ -2,16 +2,6 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const Users = require('../users/users-model.js');
 const generateToken = require('./generateToken.js');
-const db = require('../data/dbconfig.js');
-
-function add(user){
-  return db('users')
-  .insert(user)
-  .then(([id]) => {
-      return db('users')
-      .where({id})
-  })
-}
 
 router.post('/register', (req, res) => {
   const user = req.body;
@@ -20,7 +10,7 @@ router.post('/register', (req, res) => {
 
   user.password = hash;
 
-  add(user)
+  Users.add(user)
     .then(([user]) => {
       const token = generateToken(user)  
       res.status(201).json({user, token});
