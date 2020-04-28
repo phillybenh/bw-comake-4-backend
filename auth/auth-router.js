@@ -12,9 +12,9 @@ router.post('/register', (req, res) => {
   user.password = hash;
 
   Users.add(user)
-    .then(([user]) => {
-      const token = generateToken(user)  
-      res.status(201).json({user, token});
+    .then(([userN]) => {
+      const token = generateToken(userN)  
+      res.status(201).json({userN, token});
     })
     .catch((err) => {
       res.status(500).json({ errorMessage: err.message });

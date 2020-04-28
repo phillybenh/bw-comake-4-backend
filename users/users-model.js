@@ -22,7 +22,6 @@ function add(user){
     return db('users')
     .insert(user)
     .then(([id]) => {
-
         return findBy(id)
     })
 }
