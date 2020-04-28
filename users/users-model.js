@@ -22,9 +22,7 @@ function add(user){
     return db('users')
     .insert(user)
     .then(id => {
-        return db('users')
-        .where({id: id[0]})
-        .first()
+        return findBy({id: id[0]})
     })
 }
 
