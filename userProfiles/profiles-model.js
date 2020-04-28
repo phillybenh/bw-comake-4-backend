@@ -8,13 +8,13 @@ module.exports = {
 }
 
 function getBy(filter){
-    return db('user_profiles')
+    return db('users')
     .where(filter)
 }
 
 
 function update(id, changes){
-    return db('user_profiles')
+    return db('users')
     .where({id})
     .update(changes)
     .then(() => {
@@ -23,7 +23,7 @@ function update(id, changes){
 }
 
 function insert(profile){
-    return db('user_profiles')
+    return db('users')
     .insert(profile)
     .then(id => {
         return getBy({id: id[0]})
@@ -31,7 +31,8 @@ function insert(profile){
 }
 
 function remove(id){
-    return db('issues')
+    console.log({id})
+    return db('users')
     .where({id})
     .del()
     .then(number => {

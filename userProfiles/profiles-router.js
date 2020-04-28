@@ -3,7 +3,8 @@ const Profiles = require('./profiles-model.js')
 
 
 router.get('/:id', (req, res) => {
-    Profiles.getBy(req.params.id)
+    const id = req.params.id
+    Profiles.getBy({id})
     .then(profile => {
         res.status(200).json(profile)
     })
@@ -11,6 +12,7 @@ router.get('/:id', (req, res) => {
         res.status(500).json({error: err.message})
     })
 })
+
 
 router.post('/', (req, res) => {
     Profiles.insert(req.body)
