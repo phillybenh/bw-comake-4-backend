@@ -34,7 +34,7 @@ function insert(issue){
     .returning('id')
     .insert(issue)
     .then(([id]) => {
-        return findBy(id)
+        return getBy(id)
     })
 }
 
@@ -61,7 +61,6 @@ function remove(id){
     .where({id})
     .del()
     .then(number => {
-        console.log(number)
         if(number){
             return {message: 'Success'}
         } else{
