@@ -42,7 +42,9 @@ To run the tests:
 `npm run test`
 
 #### Test Information
-*** Coming Soon *** 
+- Testing Framework: Jest
+- Test command: 
+`npm run test`
 
 ### Deployment
 To deploy to Heroku:
