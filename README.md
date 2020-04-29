@@ -51,8 +51,8 @@ To deploy to Heroku:
 3. Create a new project and link your repo to the project.
 4. In the 'resources tab' add Heroku Postgres as a database.
 5. In settings, update config vars to use production as DB_ENV
-6. Open the Heroku CLI either on the website or on your own terminal.
-7. Deploy the web application.
+6. Deploy the web application.
+7. Open the Heroku CLI either on the website or on your own terminal.
 8. Migrate the database table: 
 `knex migrate:latest`
 9. Seed the database table:
