@@ -31,10 +31,10 @@ function getBy(filter){
 
 function insert(issue){
     return db('issues')
+    .returning('id')
     .insert(issue)
     .then(([id]) => {
-        console.log(id)
-        return getBy({id});
+        return findBy(id)
     })
 }
 
@@ -50,7 +50,6 @@ function update(id, changes){
 function votes(id, number){
     return db('issues')
     .where({id})
-    // .update({upvotes: knex.raw('?? + 1', ['upvotes'])})
     .update({upvotes: knex.raw(`?? + ${number}`, ['upvotes'])})
     .then(() =>{
         return db.select('upvotes').from('issues').where({id})
