@@ -66,7 +66,6 @@ router.put('/:id', (req, res) => {
             res.status(200).json(votes)
         })
         .catch(err => {
-            console.log(req.params.id)
             res.status(500).json({error: err.message})
         })
     } else {

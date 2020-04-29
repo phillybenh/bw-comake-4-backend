@@ -39,7 +39,6 @@ function update(userChanges, id){
 function remove(id){
     const toBeDeleted = findById(id)
     .then(() => {
-        console.log(toBeDeleted)
         return toBeDeleted;
     })
 }
