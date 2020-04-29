@@ -7,7 +7,7 @@
     "modules": "npm i nodemon express sqlite3 knex cors helmet bcryptjs jsonwebtoken pg",
     "server": "nodemon index.js",
     "start": "node index.js",
-    "test": "cross-env DB_ENV=testing jest --watch"
+    "test": "cross-env DB_ENV=testing jest --watch --i"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
     "helmet": "^3.22.0",
@@ -38,6 +39,8 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "modulePathIgnorePatterns": ["helpers"]
+    "modulePathIgnorePatterns": [
+      "helpers"
+    ]
   }
 }

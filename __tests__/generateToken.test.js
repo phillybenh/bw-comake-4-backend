@@ -1,5 +1,9 @@
+// Ensures that the generateToken function is working as intended
+
+// Imports
 const generateToken = require('../auth/generateToken.js');
 
+//Tests
 describe('generateToken', () => {
     const user = {id: 1, username: 'vader'}
     it('should return a JSON web token when given user information', () => {

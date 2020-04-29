@@ -49,6 +49,11 @@ function setup() {
     });
 }
 
+function tearDown(){
+  return db("users")
+  .truncate()
+}
+
 // Exports
 module.exports = {
   user,
@@ -59,4 +64,5 @@ module.exports = {
   gets,
   registers,
   logsIn,
+  tearDown
 };

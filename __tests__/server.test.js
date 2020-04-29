@@ -6,7 +6,7 @@ describe("server", () => {
   beforeEach(() => {
     return helpers.setup()
   });
-
+  // GET to root endpoint works
   describe("GET /", () => {
     it("should return 200 as status code", () => {
       return helpers.gets('/')
@@ -15,7 +15,9 @@ describe("server", () => {
         });
     });
   });
+  // POST to register
   describe("POST /register", () => {
+    // Success situations
     it("should return 201 when successful", () => {
         return helpers.registers(helpers.user)
         .then((res) => {
@@ -32,6 +34,7 @@ describe("server", () => {
           );
         });
     });
+    // Error situations
     it("should return an error if the user already exists", () => {
       return helpers.registers(helpers.registered)
         .then((res) => {
@@ -39,7 +42,9 @@ describe("server", () => {
         });
     });
   });
+  // POST to /login
   describe("POST to /login", () => {
+    // Success situations
     it("should return 201 status if succesful", () => {
       return helpers.logsIn(helpers.registered)
         .then((res) => {
@@ -56,6 +61,7 @@ describe("server", () => {
           );
         });
     });
+    // Error situations
     it("should return a message indicated authorization failed when that is the case", () => {
       return helpers.logsIn(helpers.user)
         .then((res) => {
@@ -63,7 +69,9 @@ describe("server", () => {
         });
     });
   });
+  // POST to /issues
   describe("POST to /issues", () => {
+    // Success situations
     it("should return status 202 if successful", () => {
       return helpers.posts().then((res) => {
         expect(res.status).toBe(201);
@@ -71,13 +79,19 @@ describe("server", () => {
     });
     it("should return an object containing the issue", () => {
         return helpers.posts().then((res) => {
-            expect(res.body.short_description).toBe("Big Ole Pothole")
+          expect(res.body.short_description).toBe("Big Ole Pothole")
         })
     })
+    // Error situations
     it("should not allow posts without a user_id", () => {
         return helpers.posts({short_description: "Hope this doesn't work"}).then((res) => {
             expect(res.status).toBe(401)
         })
+    })
+    it('should not allow posts without a short_description', () => {
+      return helpers.posts({user_id: 1}).then((res => {
+        expect(res.status).toBe(401)
+      }))
     })
   });
 });
