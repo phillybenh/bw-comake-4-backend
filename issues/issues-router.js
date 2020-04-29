@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
             res.status(200).json(issues)
         })
         .catch(err => {
+            
             res.status(500).json({error: err.message})
         })
     } else if(req.query.user_id) {

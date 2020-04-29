@@ -34,9 +34,10 @@ function insert(issue){
     .returning('id')
     .insert(issue)
     .then(([id]) => {
-        return getBy(id)
+        return getBy({id})
     })
 }
+
 
 function update(id, changes){
     return db('issues')
