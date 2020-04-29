@@ -1,50 +1,59 @@
-# CoMake API
+# CoMake Backend
+This is the backend for the Co-make web application. Relevant links and deployments include:
+* Marketing Landing Page:
+    * Repo: https://github.com/bw-comake-4/ui
+    * Deployed: TBD
+* Web Application Page:
+    * Repo: https://github.com/bw-comake-4/frontend
+    * Deployed: https://frontend-theta-tawny.now.sh
+* Backend:
+    * Repo: https://github.com/bw-comake-4/backend
+    * Base URL: https://comake-api.herokuapp.com
 
-## Read the Docs on Postman:
+### Read the API Docs on Postman:
 https://documenter.getpostman.com/view/10960109/SzmY7LsK
 
 ### Base URL
 https://comake-api.herokuapp.com
 
-## - GET /issues
-Returns an array of objects containing all issues. Each object includes an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+## Using This Repo Locally For Development
+This repo can easily be run locally using Node: 
 
-## - GET /issues/:id
-Returns an array containing one object. The object includes an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+### Prerequisites
+Node
 
-## - GET /issues?zip_code=12345
-Returns an array of objects containing all issues in that zip_code. Each object incldues an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+### Installing
+1. In the root directory of this repo, install all Node package dependencies:
 
-## - GET /issues?user_id=1
-Returns an array of objects containing all issues posted by that user. Each object incldues an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+`npm install`
 
-## - DELETE /issues/:id
-Deletes the indicated issue. Responds with a success message.
+2. Install nodemon, express, sqlite3, knex, cors, helmet, bcryptjs, jsonwebtoken, and pg with one simple command:
 
-## - POST /issues
-Requires a request body including short_description and zip_code. Other values optional. Creates a new issue. Responds with an array
+`npm run modules`
 
-## - PUT /issues/:id
-Requires a request body including any desired changes to be made to the issue. Returns an array containing one object. The object includes an id, short_description, description, zip_code, user_id of the poster, and the number of upvotes.
+3. Spin up the database:
 
-## - GET /users/:id
-Returns an array containing one object. Object includes the object describing the user's profile, including: id, username, password (hashed), first_name, last_name, zip_code, and bio.
+`knex migrate:latest`
 
-## - PUT /users/:id
-Requires a request body including any changes the user wants to make to their bio. Responds with an array containing the newly updated object.
+4. Check out your new database tables in SQLite Studio or a similar program.
 
-## - POST /users/:id
-Requires a request body including any details a new user wants to add to their profile. Responds with an array containing an object with the newly created profile information
+### Testing
+To run the tests:
+`npm run test`
 
-## - DEL /users/:id
-Removes a user. Responds with a success message
+#### Test Information
+*** Coming Soon *** 
 
-## Authorization Routes
-
-## - POST /login
-Requires a username and password. Upon successful login, sends a welcome message along with a JSON Web Token to be stored on the client.
-
-## - POST /register
-Requires a username and password. Upon successful login, sends a JSON Web Token to be stored by the client.
-Requires a username and password. Upon successful login, sends the new user's information along with a JSON Web Token to be stored by the client.
-
+### Deployment
+To deploy to Heroku:
+1. Push and merge any changes to your repo.
+2. Log into Heroku and authorize with Github.
+3. Create a new project and link your repo to the project.
+4. In the 'resources tab' add Heroku Postgres as a database.
+5. In settings, update config vars to use production as DB_ENV
+6. Open the Heroku CLI either on the website or on your own terminal.
+7. Deploy the web application.
+8. Migrate the database table: 
+`knex migrate:latest`
+9. Seed the database table:
+`knex seed:run`
