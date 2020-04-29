@@ -1,4 +1,4 @@
-const generateToken = require('./generateToken.js');
+const generateToken = require('../auth/generateToken.js');
 
 describe('generateToken', () => {
     const user = {id: 1, username: 'vader'}
