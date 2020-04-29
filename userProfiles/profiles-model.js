@@ -31,12 +31,10 @@ function insert(profile){
 }
 
 function remove(id){
-    console.log({id})
     return db('users')
     .where({id})
     .del()
     .then(number => {
-        console.log(number)
         if(number){
             return {message: 'Success'}
         } else{
