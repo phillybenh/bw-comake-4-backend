@@ -14,7 +14,7 @@ exports.up = function (knex) {
       tbl.increments();
       tbl.string("short_description").notNullable();
       tbl.string("description");
-      tbl.integer("zip_code", 5).notNullable();
+      tbl.string("zip_code", 5).notNullable();
       tbl.integer("user_id").notNullable().references("id").inTable("users");
       tbl.integer("upvotes").defaultTo(1);
     });
