@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
   // Check for a valid post
   if (req.body) {
     // Add the profile to the table
-    Users.insert(req.body)
+    Users.insert(req.body, req.body.id)
       .then((profile) => {
         // Send the new profile back
         res.status(201).json(profile);

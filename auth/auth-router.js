@@ -13,13 +13,11 @@ router.post("/register", (req, res) => {
   // Add the user to the database
   Users.insert(user)
     .then((user) => {
-      console.log(user)
       // Send the user a JWT and their user info
       const token = generateToken(user);
       res.status(201).json({ user, token });
     })
     .catch((err) => {
-      console.log(err)
       res.status(500).json({ errorMessage: err.message });
     });
 });
