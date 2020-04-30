@@ -22,13 +22,6 @@ function get() {
 function getBy(filter) {
   return db("issues")
     .where(filter)
-    .then((issues) => {
-      if (issues.length !== 0) {
-        return issues;
-      } else {
-        return { errorMessage: "No issue with that ID" };
-      }
-    });
 }
 
 function insert(issue) {

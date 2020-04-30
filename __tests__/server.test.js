@@ -97,7 +97,6 @@ describe("server", () => {
     })
     it("should respond with an error message if the user is not logged in", () => {
       return helpers.gets('/issues').then((res) => {
-        console.log(res.body)
         expect(res.body).toHaveProperty("errorMessage", 'Must provide credentials')
       })
     })
@@ -125,6 +124,11 @@ describe("server", () => {
         })
       })
     })
+    it('should return a status code of 400 if there\'s no such user', () => {
+      return helpers.getsWithAuth('/issues?user_id=100').then(res => {
+        expect(res.status).toBe(404)
+      })
+    })
   })
   describe("GET to issues?zip_code=12345", () => {
     it("should return a status code of 200", () => {
@@ -139,6 +143,10 @@ describe("server", () => {
         })
       })
     })
-
+    it('should return a status code of 400 if there\'s no such user', () => {
+      return helpers.getsWithAuth('/issues?user_id=100').then(res => {
+        expect(res.status).toBe(404)
+      })
+    })
   })
 });
