@@ -1,9 +1,9 @@
-//Imports
-const db = require("../data/dbconfig.js");
-
-// Use env, knex to use knex.raw
-const knex = require("knex")(knexfile[environment]);
-const knexfile = require("../knexfile");
+// Imports
+const db = require('../data/dbconfig.js');
+const knexfile = require('../knexfile')
+// Use env, knexfile to use knex.raw
+const environment = process.env.DB_ENV || 'development';
+const knex = require('knex')(knexfile[environment])
 
 // Exports
 module.exports = {
