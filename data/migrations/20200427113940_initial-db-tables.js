@@ -1,4 +1,4 @@
-exports.up = function (knex) {
+exports.up = function (knex, Promise) {
   return knex.schema
     .createTable("users", (tbl) => {
       tbl.increments();
@@ -11,7 +11,7 @@ exports.up = function (knex) {
     })
 
     .createTable("issues", (tbl) => {
-      tbl.increments();
+      tbl.increments().primary();
       tbl.string("short_description").notNullable();
       tbl.string("description");
       tbl.string("zip_code", 5).notNullable();
@@ -20,6 +20,6 @@ exports.up = function (knex) {
     });
 };
 
-exports.down = function (knex) {
+exports.down = function (knex, Promise) {
   return knex.schema.dropTableIfExists("issues").dropTableIfExists("users");
 };
