@@ -27,9 +27,9 @@ function getBy(filter) {
 function add(issue) {
   return db("issues")
     .insert(issue)
-    .returning("id")
-    .then(([id]) => {
-      return getBy({ id });
+    .returning("short_description")
+    .then(([short_description]) => {
+      return getBy({ short_description });
     });
 }
 
