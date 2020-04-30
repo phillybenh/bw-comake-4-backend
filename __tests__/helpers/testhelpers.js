@@ -49,9 +49,8 @@ function setup() {
     });
 }
 
-function tearDown(){
-  return db("users")
-  .truncate()
+function tearDown() {
+  return db("users").truncate();
 }
 
 // Exports
@@ -64,5 +63,5 @@ module.exports = {
   gets,
   registers,
   logsIn,
-  tearDown
+  tearDown,
 };

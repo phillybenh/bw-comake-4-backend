@@ -1,21 +1,21 @@
 // Imports
-const router = require('express').Router();
-const bcrypt = require('bcryptjs');
-const Users = require('../users/users-model.js');
-const generateToken = require('./generateToken.js');
+const router = require("express").Router();
+const bcrypt = require("bcryptjs");
+const Users = require("../users/users-model.js");
+const generateToken = require("./generateToken.js");
 
 // Create a new user
-router.post('/register', (req, res) => {
+router.post("/register", (req, res) => {
   const user = req.body;
   // Salt the password
   const hash = bcrypt.hashSync(user.password, 12);
   user.password = hash;
   // Add the user to the database
-  Users.add(user)
+  Users.insert(user)
     .then(([user]) => {
       // Send the user a JWT and their user info
-      const token = generateToken(user)  
-      res.status(201).json({user, token});
+      const token = generateToken(user);
+      res.status(201).json({ user, token });
     })
     .catch((err) => {
       res.status(500).json({ errorMessage: err.message });
@@ -23,10 +23,10 @@ router.post('/register', (req, res) => {
 });
 
 // Login as an existing user
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
   const { username, password } = req.body;
   // Fetch the user info
-  Users.findBy({ username })
+  Users.getBy({ username })
     .then(([user]) => {
       // Check that the username and password match up
       if (user && bcrypt.compareSync(password, user.password)) {
@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
         res.status(202).json({ user, token });
       } else {
         // If it doesn't match, send a failed authentication message
-        res.status(401).json({ message: 'Authentication failed' });
+        res.status(401).json({ message: "Authentication failed" });
       }
     })
     .catch((err) => {
@@ -43,4 +43,4 @@ router.post('/login', (req, res) => {
 });
 
 //Exports
-module.exports = router
+module.exports = router;
