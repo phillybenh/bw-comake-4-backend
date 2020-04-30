@@ -20,7 +20,7 @@ server.use(express.json());
 
 // Router use functions
 server.use("/issues", issues);
-server.use("/users", authenticate, profiles);
+server.use("/users",  profiles);
 server.use("/", authRouter);
 
 // Server check
