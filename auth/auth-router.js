@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
   const { username, password } = req.body;
   // Fetch the user info
   Users.getBy({ username })
-    .then(([user]) => {
+    .then((user) => {
       // Check that the username and password match up
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
