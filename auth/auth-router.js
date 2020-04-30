@@ -12,12 +12,14 @@ router.post("/register", (req, res) => {
   user.password = hash;
   // Add the user to the database
   Users.insert(user)
-    .then(([user]) => {
+    .then((user) => {
+      console.log(user)
       // Send the user a JWT and their user info
       const token = generateToken(user);
       res.status(201).json({ user, token });
     })
     .catch((err) => {
+      console.log(err)
       res.status(500).json({ errorMessage: err.message });
     });
 });
@@ -27,7 +29,7 @@ router.post("/login", (req, res) => {
   const { username, password } = req.body;
   // Fetch the user info
   Users.getBy({ username })
-    .then(([user]) => {
+    .then((user) => {
       // Check that the username and password match up
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
