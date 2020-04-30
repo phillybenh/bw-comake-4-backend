@@ -26,8 +26,8 @@ function getBy(filter) {
 
 function insert(issue) {
   return db("issues")
-    .returning("id")
     .insert(issue)
+    .returning("id")
     .then(([id]) => {
       return getBy({ id });
     });
