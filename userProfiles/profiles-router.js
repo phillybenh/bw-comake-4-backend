@@ -46,7 +46,7 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   // Check for id and proper updates
   if (req.params.id && req.body) {
-    Users.update(req.params.id, req.body)
+    Users.update(req.body, req.params.id)
       .then((profile) => {
         // Send the updated profile back
         res.status(202).json(profile);
