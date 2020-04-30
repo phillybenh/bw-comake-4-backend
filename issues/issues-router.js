@@ -59,25 +59,6 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Post a new issue
-router.post("/", (req, res) => {
-  // Check that an adequate object was posted
-  if (req.body.short_description && req.body.user_id) {
-    // Insert the post to the database
-    Issues.insert(req.body)
-      .then(([issue]) => {
-        res.status(201).json(issue);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  } else {
-    res
-      .status(400)
-      .json({ error: "Must include short description and user_id" });
-  }
-});
-
 // Edit an issue
 router.put("/:id", (req, res) => {
   // Check to see if the edit is an upvote
@@ -104,6 +85,25 @@ router.put("/:id", (req, res) => {
     res
       .status(401)
       .json({ error: "Must include a user ID and short description" });
+  }
+});
+
+// Post a new issue
+router.post("/", (req, res) => {
+  // Check that an adequate object was posted
+  if (req.body.short_description && req.body.user_id) {
+    // Insert the post to the database
+    Issues.insert(req.body)
+      .then(([issue]) => {
+        res.status(201).json(issue);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  } else {
+    res
+      .status(400)
+      .json({ error: "Must include short description and user_id" });
   }
 });
 
