@@ -1,44 +1,39 @@
-const db = require('../data/dbconfig.js');
+const db = require("../data/dbconfig.js");
 
 module.exports = {
-    findAll,
-    findBy,
-    add,
-    update,
-    remove
+  getAll,
+  getBy,
+  insert,
+  update,
+  remove,
 };
 
-function findAll(){
-    return db('users')
+function getAll() {
+  return db("users");
 }
 
-function findBy(filter){
-    return db('users')
-    .where(filter)
+function getBy(filter) {
+  return db("users").first().where(filter);
 }
 
-function add(user){
-    return db('users')
-    .returning('id')
+function insert(user) {
+  return db("users")
+    .returning("id")
     .insert(user)
     .then(([id]) => {
-        return findBy({id})
-    })
+      return getBy({ id });
+    });
 }
 
-function update(userChanges, id){
-    return db('users')
-    .where({id})
-    .update(userChanges)
+function update(changes, id) {
+  return db("users")
+    .where({ id })
+    .update(changes)
     .then(() => {
-        return db('users')
-        .where({id})
-    })
+      return getBy({ id });
+    });
 }
 
-function remove(id){
-    const toBeDeleted = findById(id)
-    .then(() => {
-        return toBeDeleted;
-    })
+function remove(id) {
+  return db("users").where({ id }).del();
 }
