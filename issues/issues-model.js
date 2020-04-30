@@ -24,14 +24,24 @@ function getBy(filter) {
     .where(filter)
 }
 
+// function add(issue) {
+//   return db("issues")
+//     .insert(issue)
+//     .returning("short_description")
+//     .then(([short_description]) => {
+//       return getBy({ short_description });
+//     });
+// }
+
 function add(issue) {
   return db("issues")
     .insert(issue)
-    .returning("short_description")
-    .then(([short_description]) => {
-      return getBy({ short_description });
-    });
+    .then(() => {
+      return get()
+    })
 }
+
+
 
 function update(id, changes) {
   return db("issues")
