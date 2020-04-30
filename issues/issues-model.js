@@ -1,9 +1,9 @@
 // Imports
-const db = require('../data/dbconfig.js');
-const knexfile = require('../knexfile')
+const db = require("../data/dbconfig.js");
+const knexfile = require("../knexfile");
 // Use env, knexfile to use knex.raw
-const environment = process.env.DB_ENV || 'development';
-const knex = require('knex')(knexfile[environment])
+const environment = process.env.DB_ENV || "development";
+const knex = require("knex")(knexfile[environment]);
 
 // Exports
 module.exports = {
@@ -20,16 +20,15 @@ function get() {
 }
 
 function getBy(filter) {
-  return db("issues")
-    .where(filter)
+  return db("issues").where(filter);
 }
 
 function add(issue) {
   return db("issues")
     .insert(issue)
-    .returning("short_description")
-    .then(([short_description]) => {
-      return getBy({ short_description });
+    .returning("id")
+    .then(([id]) => {
+      return getBy({ id });
     });
 }
 
