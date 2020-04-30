@@ -18,6 +18,17 @@ function gets(path) {
   return request(server).get(path);
 }
 
+function getsWithAuth(path){
+  return request(server)
+  .post("/login")
+  .send(registered)
+  .then(res => {
+    return request(server)
+    .get(path)
+    .set("Authorization", res.body.token)
+  })
+}
+
 function registers(person) {
   return request(server).post("/register").send(person);
 }
@@ -49,10 +60,6 @@ function setup() {
     });
 }
 
-function tearDown() {
-  return db("users").truncate();
-}
-
 // Exports
 module.exports = {
   user,
@@ -63,5 +70,5 @@ module.exports = {
   gets,
   registers,
   logsIn,
-  tearDown,
+  getsWithAuth
 };

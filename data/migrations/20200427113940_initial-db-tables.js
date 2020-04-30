@@ -6,7 +6,7 @@ exports.up = function (knex) {
       tbl.text("password").notNullable();
       tbl.string("first_name");
       tbl.string("last_name");
-      tbl.integer("zip_code", 5);
+      tbl.string("zip_code", 5);
       tbl.string("bio");
     })
 

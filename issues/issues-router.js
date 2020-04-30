@@ -8,7 +8,11 @@ router.get("/", (req, res) => {
   if (req.query.zip_code) {
     Issues.getBy({ zip_code: req.query.zip_code })
       .then((issues) => {
-        res.status(200).json(issues);
+        if (issues.length !== 0) {
+          res.status(200).json(issues);
+        } else {
+          res.status(404).json({ errorMessage: "No issues by that user" });
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -17,7 +21,11 @@ router.get("/", (req, res) => {
   } else if (req.query.user_id) {
     Issues.getBy({ user_id: req.query.user_id })
       .then((issues) => {
-        res.status(200).json(issues);
+        if (issues.length !== 0) {
+          res.status(200).json(issues);
+        } else {
+          res.status(404).json({ errorMessage: "No issues by that user" });
+        }
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -65,7 +73,7 @@ router.post("/", (req, res) => {
       });
   } else {
     res
-      .status(401)
+      .status(400)
       .json({ error: "Must include short description and user_id" });
   }
 });
