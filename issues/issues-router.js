@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
       });
   } else {
     res
-      .status(401)
+      .status(400)
       .json({ error: "Must include short description and user_id" });
   }
 });

@@ -80,13 +80,65 @@ describe("server", () => {
       return helpers
         .posts({ short_description: "Hope this doesn't work" })
         .then((res) => {
-          expect(res.status).toBe(401);
+          expect(res.status).toBe(400);
         });
     });
     it("should not allow posts without a short_description", () => {
       return helpers.posts({ user_id: 1 }).then((res) => {
-        expect(res.status).toBe(401);
+        expect(res.status).toBe(400);
       });
     });
   });
+  describe("GET to issues", () => {
+    it("should not allow unregistered users access, giving a 401 status code ", () => {
+      return helpers.gets('/issues').then((res) => {
+        expect(res.status).toBe(401)
+      })
+    })
+    it("should respond with an error message if the user is not logged in", () => {
+      return helpers.gets('/issues').then((res) => {
+        console.log(res.body)
+        expect(res.body).toHaveProperty("errorMessage", 'Must provide credentials')
+      })
+    })
+    it("should return a status code of 200 if the user is logged in", () => {
+      return helpers.getsWithAuth('/issues').then(res => {
+        expect(res.status).toBe(200)
+      })
+    })
+    it("should return a list of all issues", () => {
+      return helpers.getsWithAuth('/issues').then(res => {
+        expect(res.body.length).toBeTruthy()
+      })
+    })
+  })
+  describe("GET to issues?user_id=1", () => {
+    it("should return a status code of 200", () => {
+      return helpers.getsWithAuth('/issues?user_id=1').then(res => {
+        expect(res.status).toBe(200)
+      })
+    })
+    it("should return issues associated with the user ID", () => {
+      return helpers.getsWithAuth('/issues?user_id=1').then(res => {
+        res.body.map(issue => {
+          expect(issue).toHaveProperty('user_id', 1)
+        })
+      })
+    })
+  })
+  describe("GET to issues?zip_code=12345", () => {
+    it("should return a status code of 200", () => {
+      return helpers.getsWithAuth('/issues/zip_code=12345', () => {
+        expect(res.status).toBe(200)
+      })
+    })
+    it("should return issues associated with the zipcode", () => {
+      return helpers.getsWithAuth('/issues?zip_code=12345').then(res => {
+        res.body.map(issue => {
+          expect(issue).toHaveProperty('zip_code', 12345)
+        })
+      })
+    })
+
+  })
 });

@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
+    "eslint-plugin-import": "^2.20.2",
     "express": "^4.17.1",
     "formidable": "^1.2.2",
     "helmet": "^3.22.0",
@@ -34,6 +35,7 @@
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^18.1.0",
     "jest": "^25.4.0",
     "supertest": "^4.0.2"
   },

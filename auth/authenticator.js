@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     jwt.verify(token, secret, (error, decodedToken) => {
       // Verify the user's token is legit
       if (error) {
-        res.status(401).json({ message: "Bad token" });
+        res.status(401).json({ errorMessage: "Bad token" });
         // Move on to next middleware function
       } else {
         req.decodedToken = decodedToken;
@@ -20,6 +20,9 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(400).json({ message: "Must provide credentials" });
+    res.status(401).json({ errorMessage: "Must provide credentials" });
   }
 };
+
+var x = y; 
+

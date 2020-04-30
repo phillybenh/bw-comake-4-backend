@@ -19,8 +19,8 @@ server.use(helmet());
 server.use(express.json());
 
 // Router use functions
-server.use("/issues", issues);
-server.use("/users",  profiles);
+server.use("/issues", authenticate, issues);
+server.use("/users", authenticate, profiles);
 server.use("/", authRouter);
 
 // Server check
