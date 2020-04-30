@@ -91,7 +91,7 @@ router.post("/", (req, res) => {
   // Check that an adequate object was posted
   if (req.body.short_description && req.body.user_id) {
     // Insert the post to the database
-    Issues.insert(req.body)
+    Issues.add(req.body)
       .then(([issue]) => {
         console.log(issue)
         res.status(201).json(issue);

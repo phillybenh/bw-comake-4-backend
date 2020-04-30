@@ -9,7 +9,7 @@ const knex = require('knex')(knexfile[environment])
 module.exports = {
   get,
   getBy,
-  insert,
+  add,
   update,
   votes,
   remove,
@@ -24,7 +24,7 @@ function getBy(filter) {
     .where(filter)
 }
 
-function insert(issue) {
+function add(issue) {
   return db("issues")
     .insert(issue)
     .returning("id")
