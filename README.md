@@ -1,3 +1,13 @@
+# COMAKE Redeploy
+ In an effort to get my portfolio in order and keep the projects updated, I'm redeploying this backend that was originally created by [Sara Reidy](https://github.com/reidysj). 
+
+ This backend originally was for a Lambda School build week group project. 
+
+ [Original Project Repo](https://github.com/bw-comake-4)
+
+
+
+# Original README
 # CoMake Backend
 
 This is the backend for the Co-make web application. Relevant links and deployments include:
