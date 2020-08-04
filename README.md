@@ -1,10 +1,9 @@
 # COMAKE Redeploy
+[Comake-Remake](https://comake-remake.herokuapp.com)
  In an effort to get my portfolio in order and keep the projects updated, I'm redeploying this backend that was originally created by [Sara Reidy](https://github.com/reidysj). 
 
  This backend originally was for a Lambda School build week group project. 
-
  [Original Project Repo](https://github.com/bw-comake-4)
-
 
 
 # Original README
